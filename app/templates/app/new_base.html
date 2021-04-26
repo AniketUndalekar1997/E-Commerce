@@ -1,0 +1,145 @@
+{% load static %}
+<!Doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Satisfy&display=swap" rel="stylesheet"> 
+    <link href="https://fonts.googleapis.com/css2?family=Itim&family=Satisfy&display=swap" rel="stylesheet"> 
+
+    <!-- Bootstrap CSS -->
+     <link rel="stylesheet" href="{% static 'app/css/bootstrap.min.css' %}">
+    <!--Owl Carousel CSS-->
+    <link rel="stylesheet" href="{% static 'app/css/owl.carousel.min.css' %}">
+
+    <!--FontAwesome CSS-->
+    <link rel="stylesheet" href="{% static 'app/css/all.min.css' %}">
+
+    <!--Custom CSS-->
+    <link rel="stylesheet" href="{% static 'app/css/style.css' %}">
+
+	  <style type="text/css">
+
+	.megasubmenu{ padding: 15px; }
+
+	@media (min-width: 992px){
+
+		.dropdown-menu .dropdown-toggle:after{
+			border-top: .3em solid transparent;
+      border-right: 0;
+      border-bottom: .3em solid transparent;
+      border-left: .3em solid;
+		}
+
+    .dropdown:hover .dropdown-menu {
+      display: block;
+    }
+
+		.dropdown-menu{
+			margin:0;
+		}
+
+    img.item:hover{
+
+     
+      min-width: 110%;
+      min-height: 110%;
+    }
+	}
+</style>
+
+    <title>ShoppinglyX | {% block title %} {% endblock title %} </title>
+  </head>
+  <body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+     <div class="container">
+       <a class="navbar-brand" style="font-family: 'Satisfy', cursive; font-size: 30px;" href="/">Shoppeural</a>
+       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+         <span class="navbar-toggler-icon"></span>
+       </button>
+       <div class="collapse navbar-collapse" id="navbarSupportedContent">
+
+          <ul class="navbar-nav me-auto mb-2 mb-lg-0" >
+	          <li class="nav-item">
+              <a class="nav-link active" aria-current="page" href="/">Home</a>
+            </li>
+
+          	<li class="nav-item dropdown">
+          		<a class="nav-link text-white dropdown-toggle" role="button" id="electronicsDropdown" data-toggle="dropdown" aria-expanded="false"> Electronics</a>
+          	    <ul class="dropdown-menu" aria-labelledby="electronicsDropdown">
+          	    <li><a class="dropdown-item" href="{% url 'mobile' %}">Mobile</a></li>
+          		  <li><a class="dropdown-item" href="{% url 'laptop' %}"> Laptops </a></li>
+          		  <li><a class="dropdown-item" href="{% url 'audio' %}"> Audio </a></li>
+
+          	    </ul>
+          	</li>
+          	<li class="nav-item dropdown">
+          		<a class="nav-link text-white dropdown-toggle" href="#" data-toggle="dropdown" aria-expanded="false"> Fashion </a>
+          	    <ul class="dropdown-menu">
+          		  <li class="has-submenu">
+          		  	 <a class="dropdown-item" href="{% url 'topwear' %}"> Top wear </a>
+          			  <a class="dropdown-item" href="{% url 'bottomwear' %}"> Bottom wear </a>
+          			  <a class="dropdown-item" href="{% url 'footwear' %}"> Footwear </a>
+
+          		  </li>
+          	    </ul>
+          	</li>
+          </ul>
+             <form class="d-flex">
+               <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+               <button class="btn btn-warning" type="submit">Go</button>
+             </form>
+
+          <div>
+          <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+			  {% if request.user.is_authenticated %}
+           <li class="nav-item dropdown mx-2">
+              <a class="nav-link dropdown-toggle text-white" href="#" id="profileDropdown" role="button" data-toggle="dropdown" aria-expanded="false">
+              {{request.user.username|capfirst}}
+              </a>
+              <ul class="dropdown-menu" aria-labelledby="profileDropdown">
+                <li><a class="dropdown-item" href="{% url 'profile' %}">Profile</a></li>
+                <li><a class="dropdown-item" href="{% url 'orders' %}">Orders</a></li>
+                <li><a class="dropdown-item" href="{% url 'passwordchange' %}">Change Password</a></li>
+                <li><a class="dropdown-item" href="{% url 'logout' %}">Logout</a></li>
+              </ul>
+            </li>
+            <li class="nav-item mx-2">
+             <a href="{% url 'showcart' %}" class="nav-link text-white"><span class="badge bg-danger">{{cart_item|length}}</span> Cart </a>
+            </li>
+			  {% else %}
+            <li class="nav-item mx-2">
+             <a href="{% url 'login' %}" class="nav-link text-white">Login</a>
+            </li>
+            <li class="nav-item mx-2">
+             <a href="{% url 'registration' %}" class="nav-link text-white">Registration</a>
+            </li>
+			  {% endif %}
+          </ul>
+         </div>
+       </div>
+     </div>
+    </nav>
+
+    {% block banner_slider %} {% endblock banner_slider %}
+    {% block livesale %} {% endblock livesale %}
+    {% block main-content %} {% endblock main-content %}
+
+    <!-- Start Footer -->
+    <footer class="container-fluid bg-dark text-center p-2 mt-5">
+
+        <img src="{% static 'app/images/payment.png' %}" alt="" srcset="" class="img-fluid" height="2px">
+    </footer> <!-- End Footer -->
+    <!-- Jquery -->
+	<script src="{% static 'app/js/jquery.min.js' %}" ></script>
+    <!-- Bootstrap Bundle with Popper -->
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW" crossorigin="anonymous"></script>
+
+    <script src="{% static 'app/js/bootstrap.bundle.min.js' %}"></script>
+    <script src="{% static 'app/js/owl.carousel.min.js' %}"></script>
+    <script src="{% static 'app/js/all.min.js' %}"></script>
+    <script src="{% static 'app/js/myscript.js' %}"></script>
+  </body>
+</html>
