@@ -1,0 +1,24 @@
+{% extends 'app/new_base.html' %}
+{% load static %}
+{% block title %}TopW ears{% endblock title %}
+
+{% block main-content %}
+<div class="container my-5">
+  <div class="col">
+   <div class="row">
+    {% for product in products %}
+    <div class="col-sm-4 text-center">
+     <a href="{% url 'product-detail' product.id %}" class="btn">
+      <div class="item" style="margin: 15px;">
+       <img src="{{product.product_image.url}}" alt="" height="200" width="250" class="">
+       <div class="fw-bold">{{product.title}}</div>
+       <div class="fw-bold">Rs. {{product.discounted_price}}</div>
+       <small class="fw-light text-decoration-line-through">{{product.selling_price}}</small>
+     </div>
+     </a>
+   </div>
+  {% endfor %}
+ </div>
+</div>
+</div>
+{% endblock main-content %}

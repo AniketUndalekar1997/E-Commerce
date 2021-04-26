@@ -21,6 +21,16 @@ class ProductView(View):
                        'mobiles': mobiles, 'laptops': laptops})
 
 
+def search(request):
+    template = 'app/search.html'
+    query = request.GET.get('q')
+    result = Product.objects.filter(Q(title__icontains=query) | Q(description__icontains=query) )
+    context = {'products': result}
+    if not query:
+        return redirect('home')
+    return render(request, template, context)
+    
+
 @login_required()
 def show_cart_item(request):
     user = request.user
