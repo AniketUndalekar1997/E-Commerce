@@ -1,3 +1,3 @@
-# Djnago E-commerce website 
+# Django E-commerce website 
 Shopping we
 ![alt text](https://github.com/geekyshow1/shoppinglyx/blob/main/Screenshots/Home.jpeg)
