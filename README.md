@@ -5,4 +5,5 @@ This web site developed in Django Framework.
 3. User registration, User login, Logout pages.
 4. Allow user to reset his password and Forgot password features.
 5. Allow user to track his order after he placed his order.
+6. Ajax button to increase quantity of product whilch enable real with auto price change.
 ![alt-text](https://github.com/geekyshow1/shoppinglyx/blob/main/Screenshots/Home.jpeg)
